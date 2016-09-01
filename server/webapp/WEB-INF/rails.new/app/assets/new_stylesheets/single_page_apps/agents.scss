@@ -14,20 +14,35 @@
  * limitations under the License.
  */
 
-@import 'shared/mixins';
-@import 'shared/common';
-@import 'shared/alert';
+@import '../shared/go-variables';
+@import '../shared/mixins';
+@import '../shared/common';
+@import '../shared/alert';
+@import '../shared/header';
 
 
 .page-header {
   background: url(/go/assets/bg-pattern.jpg) no-repeat 0 0;
   background-size: cover;
-  padding: 20px 0;
+  padding: 10px 0;
+  position:relative;
+  &:before{
+    content:"";
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,0.2);
+  }
   h1 {
-    font-size: 30px;
-    margin: 4px 0 0 0;
+    font-size: 20px;
+    margin: 0;
     color: #ffffff;
     text-transform: uppercase;
+  }
+  .row{
+    position: relative;
   }
 }
 
@@ -39,6 +54,7 @@
 }
 
 // custom button group
+
 $agent-button-group-border-radius:5px;
 $secondary-color:#34D9DB;
 $border-color:#cccccc;
@@ -47,29 +63,29 @@ $border-color:#cccccc;
   margin-bottom: 0;
   float: right;
   > li {
-    margin-left: 3px;
+    margin-left: 1px;
     display: inline-block;
     position: relative;
     &:first-child {
       margin-left: 0;
       > .button {
-        border-top-left-radius: $agent-button-group-border-radius;
-        border-bottom-left-radius: $agent-button-group-border-radius;
+        border-radius: $agent-button-group-border-radius 0 0  $agent-button-group-border-radius;
+
       }
     }
     &:last-child {
       > .button {
-        border-top-right-radius: $agent-button-group-border-radius;
-        border-bottom-right-radius: $agent-button-group-border-radius;
+        border-radius: 0 $agent-button-group-border-radius  $agent-button-group-border-radius 0;
       }
     }
     .button {
       background-color: $secondary-color;
       color: #333333;
       border: 0;
-      font-size: 16px;
+      font-size: rem-calc(14px);
       margin: 0;
       border-radius:0;
+      padding:7px;
       &:hover,
       &:focus {
         background-color: lighten( $secondary-color, 20%);
@@ -153,19 +169,17 @@ $border-color:#cccccc;
 .agent-button-group > li{
   .add-resource {
     input[type="text"] {
-      border-radius: 0;
-      border-top-left-radius: $agent-button-group-border-radius;
-      border-bottom-left-radius: $agent-button-group-border-radius;
+      border-radius:  $agent-button-group-border-radius 0 0  $agent-button-group-border-radius;
       height: 40px;
     }
     button {
       border-radius: 0;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
-      border: 1px solid #34D9DB;
-      background: #34D9DB;
+      border: 1px solid $secondary-color;
       margin-right: 1px;
       font-size: 15px;
+      background: $secondary-color;
       color: #333333;
       height: 40px;
       &:hover,
@@ -181,6 +195,8 @@ $border-color:#cccccc;
   .button[disabled] {
     opacity: 1;
     cursor: not-allowed;
+    background: $secondary-color;
+    color: #333333;
   }
 }
 
@@ -188,13 +204,13 @@ $border-color:#cccccc;
 
 // search panel
 .search-panel {
-  padding: 30px 0;
+  padding: 5px 0;
   background:#fff;
 }
 
 .search-bar {
   position: relative;
-  margin-top: 10px;
+  margin: 10px 0;
   @include icon-before($type:search);
   &:before{
     position: absolute;
@@ -222,7 +238,7 @@ $border-color:#cccccc;
 .search-summary {
   display: flex;
   list-style-type: none;
-  margin: 0;
+  margin: 13px 0 0 0;
   padding: 0;
   float: right;
   width: 350px;
@@ -235,11 +251,12 @@ $border-color:#cccccc;
     }
     label {
       color: #444444;
-      cont-size: 14px;
+      font-size: rem-calc(13px);
+      line-height :15px;
     }
     .value {
-      font-size: 20px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
     }
     &.enabled {
       color:#50E3C2;
@@ -256,14 +273,17 @@ $border-color:#cccccc;
 .go-table{
   border-bottom:2px solid #cccccc;
   thead{
+    border:0;
     tr{
       background:#333333;
       color:#ffffff;
+      font-size: rem-calc(14px);
 
     }
   }
   tbody{
     tr{
+      font-size: rem-calc(13px);
       &.building{
         background:#ffeda0;
         border-bottom:1px solid #fff;
