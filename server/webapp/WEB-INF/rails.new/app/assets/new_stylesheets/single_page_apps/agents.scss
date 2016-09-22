@@ -38,32 +38,32 @@
 }
 
 .page-header {
-  background:      image-url('bg_agents_page_header.jpg') no-repeat 0 0;
+  background:      $page-header-bg;
   background-size: cover;
   padding:         10px 0;
   position:        relative;
   h1 {
-    font-size:      20px;
-    margin:         0;
-    color:          #fff;
-    text-transform: uppercase;
-    display:        inline-block;
-    font-weight:    600;
+    font-size:   rem-calc(18px);
+    font-weight: 400;
+    margin:      0;
+    display:     inline-block;
+    font-weight: 500;
   }
   .old-agents-page {
-    color:           #fff;
-    background:      $dark-grey;
-    font-size:       rem-calc(13px);
-    font-weight:     600;
+    color:           $txt-color;
+    font-size:       rem-calc(12px);
+    font-weight:     500;
     position:        relative;
     margin:          0 10px;
     text-decoration: none;
     top:             -1px;
     padding:         3px 7px;
     border-radius:   $global-border-radius;
+    border:          1px solid $border-color;
     &:hover {
-      background: #fff;
-      color:      #333;
+      background: $btn-bg-hover;
+      color:      $btn-bg-hover-txt;
+      border:     0;
     }
   }
 }
@@ -109,18 +109,18 @@ span.info {
       }
     }
     .button {
-      background-color: $go-secondary;
+      background-color: $agent-header-button-bg;
       color:            #333;
       border:           0;
       font-size:        rem-calc(13px);
       font-weight:      600;
       margin:           0;
       border-radius:    0;
-      padding:          0 7px;
+      padding:          0 10px;
       line-height:      30px;
       &:hover,
       &:focus {
-        background-color: lighten($go-secondary, 20%);
+        background-color: $agents-btn-hover;
         outline:          0;
       }
       &.btn-apply {
@@ -132,11 +132,13 @@ span.info {
         height:           auto;
         line-height:      normal;
         background-color: $go-primary;
+        border:0;
         &:hover,
         &:focus {
-          background-color: lighten($go-primary, 2%);
           outline:          0;
           color:            $go-white;
+          border:0;
+          background-color: $go-primary;
         }
       }
     }
@@ -145,7 +147,7 @@ span.info {
     }
     &.is-open {
       > .button {
-        background-color:           lighten($go-secondary, 20%);
+        background-color:           $agents-btn-hover;
         border-bottom-right-radius: 0;
         &:before {
           content:      "";
@@ -158,7 +160,7 @@ span.info {
           height:       0;
           border-style: solid;
           border-width: 10px 10px 0 10px;
-          border-color: lighten($go-secondary, 20%) transparent transparent transparent;
+          border-color: $agents-btn-hover transparent transparent transparent;
         }
       }
     }
@@ -170,7 +172,7 @@ span.info {
   position:   absolute;
   right:      0;
   top:        102%;
-  background: #535353;
+  background: $go-white;
   padding:    20px;
   width:      300px;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.34);
@@ -191,7 +193,6 @@ span.info {
       display: none;
     }
     .no-environment {
-      color:       #fff;
       font-weight: 700;
       margin:      0;
       font-size:   rem-calc(13px);
@@ -207,14 +208,11 @@ span.info {
   max-height:      190px;
   overflow-y:      auto;
   li {
-    border-bottom:  1px dotted #717171;
+    border-bottom:  1px dotted $border-color;
     padding-bottom: 5px;
     margin-bottom:  5px;
     input[type=checkbox] {
       margin-bottom: 0;
-    }
-    label {
-      color: #fff;
     }
   }
 }
@@ -231,19 +229,20 @@ span.info {
       border-radius:              0;
       border-top-right-radius:    5px;
       border-bottom-right-radius: 5px;
-      border:                     1px solid $go-primary;
-      background:                 $go-primary;
+      border:                     1px solid $input-btn-bg;
+      background:                 $input-btn-bg;
       margin-right:               1px;
       font-size:                  15px;
-      color:                      $go-white;
+      color:                      $txt-color;
       height:                     35px;
       transition:                 all 0.3s ease-in-out;
       &:hover,
       &:focus {
         transition:       all 0.3s ease-in-out;
-        background-color: lighten($go-primary, 2%);
+        background-color: $btn-bg-hover;
         outline:          0;
         color:            #fff;
+        border:           1px solid $btn-bg-hover;
       }
     }
   }
@@ -258,6 +257,7 @@ span.info {
     &:hover {
       background-color: #c7c7c7;
       color:            #a9a9a9;
+
     }
   }
 }
@@ -275,7 +275,7 @@ span.info {
   &:before {
     position:  absolute;
     left:      7px;
-    color:     $go-tertiary;
+    color:     $border-color;
     top:       3px;
     font-size: 18px;
   }
@@ -286,8 +286,7 @@ span.info {
     padding-left:  40px;
     margin-bottom: 0;
     height:        35px;
-    background:    transparent;
-    color:         #fff;
+    background:    #fff;
 
   }
   .fa {
@@ -315,12 +314,10 @@ span.info {
       border: 0;
     }
     label {
-      color:     #fff;
       font-size: 14px;
     }
     .value {
       font-size: 20px;
-      color:     #fff;
     }
     &.enabled {
       .value {
@@ -346,16 +343,16 @@ $arrow-color: #000;
   margin:        0;
 
   $column-widths: (
-                   "1": 2%,
-                   "2": 13%,
-                   "3": 7%,
-                   "4": 10%,
-                   "5": 10%,
-                   "6": 7%,
-                   "7": 11%,
-                   "8": 22%,
-                   "9": 18%,
-                 );
+                    "1": 2%,
+                    "2": 13%,
+                    "3": 7%,
+                    "4": 10%,
+                    "5": 10%,
+                    "6": 7%,
+                    "7": 11%,
+                    "8": 22%,
+                    "9": 18%,
+                  );
 
   @each $key, $val in $column-widths {
     td:nth-child(#{$key}), th:nth-child(#{$key}) {
@@ -366,8 +363,8 @@ $arrow-color: #000;
   thead {
     border: 0;
     tr {
-      background: $go-tertiary;
-      color:      $grey;
+      background: $table-header-bg;
+      color:      $txt-color;
       font-size:  rem-calc(14px);
 
     }
@@ -401,7 +398,8 @@ $arrow-color: #000;
 .agents-table {
   thead {
     tr {
-      background: $go-tertiary;
+      background:    $table-header-bg;
+      border-bottom: 3px solid #a5d6a7;
       th {
         color: $dark-grey;
       }

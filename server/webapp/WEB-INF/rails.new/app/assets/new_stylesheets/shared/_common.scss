@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@import "go-variables";
+
 //z-index
 
 $app-header-top-line: 11;
@@ -24,7 +26,7 @@ $agent-header-panel-z-index: 3;
 $build-details-dropdown-arrow-z-index: 1;
 
 body {
-  background: image-url('bg-texture-dark.png') repeat 0 0;
+  background: $body-background;
 }
 
 .main-container {
