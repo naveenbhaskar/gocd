@@ -27,13 +27,13 @@
 
 .agent-header-panel {
   position:  fixed;
-  top:       50px;
+  top:       $main-nav-height;
   transform: translateX(-50%);
   left:      50%;
   width:     100%;
   z-index:   $agent-header-panel-z-index;
   .message {
-    background-color: #333;
+    background-color: $body-background;
   }
 }
 
@@ -265,7 +265,7 @@ span.info {
 // search panel
 .search-panel {
   padding:          10px 0;
-  background-color: #333;
+  background-color: $body-background;
 }
 
 .search-bar {
