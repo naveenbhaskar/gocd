@@ -50,20 +50,19 @@
     font-weight: 500;
   }
   .old-agents-page {
-    color:           $txt-color;
     font-size:       rem-calc(12px);
-    font-weight:     500;
     position:        relative;
     margin:          0 10px;
     text-decoration: none;
     top:             -1px;
     padding:         3px 7px;
     border-radius:   $global-border-radius;
-    border:          1px solid $border-color;
+    background:    $btn-bg;
+    color:         $btn-txt;
+    font-weight:   600;
     &:hover {
-      background: $btn-bg-hover;
-      color:      $btn-bg-hover-txt;
-      border:     0;
+      background:    $btn-bg;
+      color:         $btn-txt;
     }
   }
 }
@@ -110,7 +109,7 @@ span.info {
     }
     .button {
       background-color: $agent-header-button-bg;
-      color:            #333;
+      color:            #fff;
       border:           0;
       font-size:        rem-calc(13px);
       font-weight:      600;
@@ -145,6 +144,25 @@ span.info {
     > .button:not(:last-child) {
       border-right: 0;
     }
+
+    &.has-dropdown {
+     > .button {
+        position:      relative;
+        padding-right: 25px !important;
+        &:after {
+          content:      "";
+          position:     absolute;
+          top:          14px;
+          width:        0;
+          height:       0;
+          border-style: solid;
+          border-width: 6px 4px 0 4px;
+          border-color: #fff transparent transparent transparent;
+          transition:   all 0.3s ease-in-out;
+          right:        10px;
+        }
+      }
+    }
     &.is-open {
       > .button {
         background-color:           $agents-btn-hover;
@@ -153,13 +171,13 @@ span.info {
           content:      "";
           position:     absolute;
           z-index:      1;
-          bottom:       -9px;
+          bottom:       -6px;
           left:         50%;
           transform:    translateX(-50%);
           width:        0;
           height:       0;
           border-style: solid;
-          border-width: 10px 10px 0 10px;
+          border-width: 6px 6px 0 6px;
           border-color: $agents-btn-hover transparent transparent transparent;
         }
       }
@@ -257,6 +275,10 @@ span.info {
     &:hover {
       background-color: #c7c7c7;
       color:            #a9a9a9;
+
+    }
+    &:after {
+      border-color: #dddddd transparent transparent transparent;
 
     }
   }
@@ -392,7 +414,7 @@ $arrow-color: #000;
 }
 
 .agents-table-body {
-  margin-top: 218px;
+  margin-top: 169px;
 }
 
 .agents-table {
@@ -402,6 +424,7 @@ $arrow-color: #000;
       border-bottom: 3px solid #a5d6a7;
       th {
         color: $dark-grey;
+        padding:5px 10px !important
       }
     }
   }
