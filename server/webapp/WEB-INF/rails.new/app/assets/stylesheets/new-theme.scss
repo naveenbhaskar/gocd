@@ -152,7 +152,7 @@ h4 {
             border:     0;
           }
           &:hover {
-            background: $current-link !important;
+            background: $main-nav-link-bg-hover !important;
           }
         }
       }
@@ -465,6 +465,7 @@ h1.entity_title {
     span {
       line-height:    20px;
       text-transform: none;
+      font-weight:normal;
     }
   }
 }
@@ -979,6 +980,7 @@ ul#pipeline_config_tree {
     box-shadow:    none;
     border:        0;
     color:         $txt-color !important;
+    font-weight: normal;
     &:hover {
       font-size:  rem-calc(11px);
       color:      $txt-color !important;
@@ -1570,16 +1572,26 @@ form#notification_form fieldset {
 }
 
 button#signin2 {
-  min-width:        75px;
-  border:           0;
-  background-image: none !important;
+  min-width:        100px;
   padding:          6px 9px;
-  height:           30px;
-
+  background-color: #f6f6f6;
+  border:           0;
+  background-image: none;
+  color:            #fff !important;
+  height:           35px;
+  span {
+    font-size: 12px !important;
+    color:     #fff;
+  }
+}
+#graphic-dialog-input #user_login, #graphic-dialog-input #user_password {
+  padding: 5px 10px;
+  height:  30px;
 }
 
-button#signin2 span {
-  color: #fff;
+a:link.help, a:visited.help {
+  margin-top: 9px;
+  color:#fff;
 }
 
 #MB_content {
@@ -1849,22 +1861,6 @@ input.compare_pipeline_input {
   }
 }
 
-//.changes_button_wrapper button.submit, .operate button.submit, .deploy button.submit {
-//  background-color: #f6f6f6!important;
-//  border:           1px solid #cccccc;
-//  &#confirm-pause-gocd.perf1{
-//    background-color: #f6f6f6!important;
-//    border:           1px solid #cccccc;
-//  }
-//  &#unpause-gocd.perf1{
-//    background-color: #666666!important;
-//    border:           1px solid #cccccc;
-//  }
-//  &:hover{
-//    background-color: #666666!important;
-//  }
-//}
-
 .unpause_wrapper button.primary {
   background-color: #666666 !important;
   height: 22px;
@@ -1887,3 +1883,13 @@ input.compare_pipeline_input {
   #stages .build_cause .modified_files div {
     padding: 2px 5px 5px 20px;
   }
+.show_panel.submit_small.dashboard_build_cause_button{
+  padding-right: 16px!important;
+  background-position: right 5px!important;
+}
+
+.pipeline_bundle .pipeline_operations{
+  .pause_wrapper button.submit{
+    border:0;
+  }
+}
