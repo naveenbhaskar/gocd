@@ -57,13 +57,6 @@ body {
   margin:        0;
   overflow:      visible;
   @include clearfix;
-
-@media only screen and (min-width: 1600px) {
-  .row {
-    margin-left:  auto;
-    margin-right: auto;
-    max-width:    1400px;
-  }
 }
 
 a, a:hover, a:visited {
@@ -731,7 +724,6 @@ ul.entity_title {
   }
 }
 
-
 #body_content .stage_detail_setting, .job_details .job_detail_setting {
   margin: 8px 0 0 10px;
 }
@@ -759,18 +751,6 @@ ul.entity_title {
     font-size:   18px !important;
   }
 
-}
-
-#pipeline-history .pipeline-buttons a.link_as_button span {
-  &:hover {
-    color: #fff !important;
-  }
-}
-
-#pipeline-history .pipeline-buttons {
-  margin-top: 0;
-  position:   relative;
-  top:        -7px;
 }
 
 //stage history
@@ -2025,7 +2005,6 @@ a:link.help, a:visited.help {
   }
 }
 
-
 .label-filter-group {
   position: absolute;
   top:      10px;
@@ -2904,6 +2883,4 @@ button.edit-environment {
   h1 {
     margin-bottom: 20px;
   }
-=======
->>>>>>> Pipeline selector finetuning
 }
