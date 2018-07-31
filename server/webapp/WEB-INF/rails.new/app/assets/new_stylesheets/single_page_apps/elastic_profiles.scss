@@ -38,11 +38,7 @@ $elastic-profile-icon-hover-color : #000;
   margin-top : 20px;
 }
 
-.elastic-profiles {
-  margin-top       : 60px;
-  background-color : $accordion-bg;
-  overflow         : auto;
-}
+
 
 .reveal .delete-profile {
   @include icon-before($type : trash, $color : $white, $margin : 0 5px 0 0, $progress-spinner : true);

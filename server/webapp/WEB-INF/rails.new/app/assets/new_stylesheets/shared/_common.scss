@@ -301,6 +301,14 @@ select {
   }
 }
 
+
+.main-container {
+  margin-top       : 70px;
+  background-color : $accordion-bg;
+  overflow         : auto;
+}
+
+
 //new styles
 
 .key-value-pair {

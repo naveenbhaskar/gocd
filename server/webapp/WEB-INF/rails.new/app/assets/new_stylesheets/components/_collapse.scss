@@ -48,15 +48,18 @@
 .c-collapse_header {
   @include clearfix();
   padding : 10px 50px 10px 30px;
-  .expanded.collapse & {
+
+
+}
+
+.c-collapse.expanded{
+  .c-collapse_header {
     border-bottom : 1px solid $border-color;
   }
-
 }
 
 .c-collapse_title {
   float : left;
-  margin-top: 5px;
 }
 
 .c-collapse_body {
