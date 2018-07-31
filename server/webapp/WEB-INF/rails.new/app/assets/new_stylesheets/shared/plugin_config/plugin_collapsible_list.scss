@@ -14,60 +14,20 @@
  * limitations under the License.
  */
 
+$icon-text-padding : 20px;
 
+.plugin-config-read-only {
 
-$icon-text-padding: 20px;
-
-.plugin-collapsible-list {
-  background:    $go-white;
-  position:      relative;
-  border-top:    1px solid #ddd;
-  border-radius: $global-border-radius;
-  cursor:        pointer;
-
-  &.expanded {
-    background: #fcfaff;
-  }
-
-  &.collapsed {
-    background: $go-white;
-  }
-
-  .collapsible-list-header {
-    padding: 10px;
-  }
-
-  .plugin-description {
-    display:        inline-block;
-    vertical-align: middle;
-    padding-left:   $plugin-icon-size;
-    width:          calc(100% - #{$icon-text-padding});
-
-    .plugin-id, .profile-id {
-      display:   inline-block;
-      min-width: 300px;
-    }
+  .key-value-pair {
     .key {
-      font-weight: 600;
-      font-size:   rem-calc(13px);
+      width      : 25%;
+      max-width  : 200px;
+      word-break : break-all;
     }
-  }
-
-  .plugin-config-read-only {
-    box-sizing: border-box;
-    padding:    10px 10px 10px 60px;
-    .key-value-pair {
-      dt {
-        width: 20%;
-      }
-      dd {
-        width: 80%;
-      }
-      pre {
-        width:       100%;
-        display:     block;
-        white-space: inherit;
-      }
+    .value {
+      width      : 70%;
+      overflow-x : auto;
     }
   }
 }
+
