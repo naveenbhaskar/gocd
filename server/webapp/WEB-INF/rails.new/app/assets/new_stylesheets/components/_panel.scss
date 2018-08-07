@@ -16,7 +16,8 @@
 
 $panel-header :$go-secondary;
 $panel-body :$go-white;
-$panel-icon-size : 30px;
+$panel-icon-size : $component-icon-size;
+
 
 
 .panel {
@@ -35,9 +36,7 @@ $panel-icon-size : 30px;
   float : left;
 }
 .panel_title{
-  margin-right : 20px;
-  font-weight : 600;
-  line-height : $plugin-icon-size;
+  @extend %title;
 }
 
 .panel_icon {

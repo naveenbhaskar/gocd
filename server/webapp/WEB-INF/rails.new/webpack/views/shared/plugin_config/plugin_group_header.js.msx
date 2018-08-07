@@ -28,11 +28,11 @@ class PluginGroupHeader {
 
     if (pluginInfo) {
       pluginIcon      = (<span class="panel_icon plugin-icon"><img src={pluginInfo.imageUrl()}/></span>);
-      pluginNameLabel = (<label className="panel_title plugin-name">{pluginInfo.about().name()}</label>);
+      pluginNameLabel = (<h5 className="panel_title plugin-name">{pluginInfo.about().name()}</h5>);
 
     } else {
       pluginNameLabel = (
-        <label className="panel_title plugin-not-installed">Plugin is not installed</label>);
+        <h5 className="panel_title plugin-not-installed">Plugin is not installed</h5>);
       pluginIcon      = (<span class="panel_icon plugin-icon warning"></span>);
     }
 

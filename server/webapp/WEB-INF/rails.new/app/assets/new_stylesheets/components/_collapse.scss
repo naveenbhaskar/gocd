@@ -16,16 +16,21 @@
 
 //c- is used before a component class to understand that its a component. since collapse is a gerneric name, it might have used in many places and need to avoid the conflicts.
 
+$collapse-icon-size : $component-icon-size;
+$collapse-border:$border-grey;
+$collapse-icon-color: #dddddd;
+
+
 .c-collapse {
   background    : $go-white;
   position      : relative;
-  border        : 1px solid $border-color;
+  border        : 1px solid $collapse-border;
   border-radius : $global-border-radius;
   cursor        : pointer;
   margin-bottom : 10px;
   &.collapsed {
     background : $go-white;
-    @include icon-before($type: angle-right, $color: #ccc);
+    @include icon-before($type: angle-right, $color:$collapse-icon-color);
     &:before{
       position: absolute;
       right: 10px;
@@ -35,7 +40,7 @@
   }
   &.expanded {
     @extend %box-shadow;
-    @include icon-before($type: angle-down, $color: #ccc);
+    @include icon-before($type: angle-down, $color: $collapse-icon-color);
     &:before{
       position: absolute;
       right: 10px;
@@ -48,13 +53,31 @@
 .c-collapse_header {
   @include clearfix();
   padding : 10px 50px 10px 30px;
+}
+
+.c-collapse_header_details{
+  float:left;
+  display:flex;
+  align-items:center;
+}
+
+.c-collapse_title{
+  @extend %title;
+}
 
 
+.c-collapse_icon {
+  width:          $collapse-icon-size ;
+  height:         $collapse-icon-size ;
+  display:        inline-block;
+  vertical-align: middle;
+  float: left;
+  margin:0 15px 0 -15px;
 }
 
 .c-collapse.expanded{
   .c-collapse_header {
-    border-bottom : 1px solid $border-color;
+    border-bottom : 1px solid $collapse-border;
   }
 }
 
@@ -64,4 +87,8 @@
 
 .c-collapse_body {
   padding : 20px 30px;
+}
+
+.collapse_header_details {
+  display: flex;
 }

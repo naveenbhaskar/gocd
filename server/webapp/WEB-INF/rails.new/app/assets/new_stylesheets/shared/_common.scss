@@ -19,6 +19,10 @@
 @import "notifications";
 @import "header";
 
+$auth-config-plugin-icon-size: 30px;
+$auth-config-icon-text-padding: 20px;
+
+
 %boxshadow {
   box-shadow : 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
@@ -121,7 +125,7 @@ html, body {
   padding       : 10px 15px;
   margin-bottom : 15px;
   position      : relative;
-  min-height    : 44px;
+  min-height    : 50px;
   box-sizing    : border-box;
 
   h1 {
@@ -301,34 +305,32 @@ select {
   }
 }
 
-
 .main-container {
   margin-top       : 70px;
   background-color : $accordion-bg;
   overflow         : auto;
 }
 
-
 //new styles
 
 .key-value-pair {
   @include clearfix;
-  margin    : 0;
-  padding   : 0;
+  margin  : 0;
+  padding : 0;
   dt, .key {
     float         : left;
     min-width     : 150px;
     clear         : left;
     font-weight   : 400;
     margin-bottom : 0;
-    font-size : rem-calc(13px);
+    font-size     : rem-calc(13px);
   }
   dd, .value {
     float        : left;
     position     : relative;
     padding-left : 15px;
     font-weight  : 600;
-    font-size : rem-calc(13px);
+    font-size    : rem-calc(13px);
     &:before {
       content     : ":";
       position    : absolute;
@@ -340,6 +342,7 @@ select {
   //extended for header
 
   &.key-value-pair-header {
+    margin-right : 20px;
     dt, .key {
       min-width : 10px;
     }
@@ -354,16 +357,54 @@ ul.key-value-pair {
   padding         : 0;
   li {
     @include clearfix();
-    padding:5px;
+    padding       : 5px;
     border-bottom : 1px dashed lighten($border-color, 10%);
-    &:last-child{
-      border:0;
+    &:last-child {
+      border : 0;
     }
   }
 
 }
 
+
+.plugin-config-read-only {
+
+  .key-value-pair {
+    .key {
+      width      : 25%;
+      max-width  : 200px;
+      word-break : break-all;
+    }
+    .value {
+      width      : 70%;
+      overflow-x : auto;
+    }
+  }
+}
+
+
+
 .page-save-in-progress {
   pointer-events : none;
   opacity        : 0.3;
+}
+
+//silent classes
+
+%title {
+  margin      : 0 20px 0 0;
+  font-weight : 600;
+  font-size   : 14px;
+  line-height : $component-icon-size;
+}
+
+
+.unknown-plugin-icon {
+  @include icon-before($type: question, $size: $auth-config-plugin-icon-size, $color: $light-gray);
+  &:before {
+    margin: 0;
+  }
+}
+.collapse_header_error_message{
+  font-size:13px;
 }

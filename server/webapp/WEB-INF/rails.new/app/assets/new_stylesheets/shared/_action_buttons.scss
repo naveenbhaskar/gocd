@@ -21,16 +21,17 @@ $action-icon-color: #555;
 $action-icon-hover-color: #000;
 $btn-group-bg :$go-white;
 $btn-group-border-radius: $global-border-radius;
+$btn-border :$border-grey;
 
 .btn-group{
-  border:1px solid $border-color;
+  border:1px solid $btn-border;
   border-radius:$btn-group-border-radius;
   display:inline-flex;
   background:$btn-group-bg;
 }
 .btn{
   border:0;
-  border-left:1px solid #ccc;
+  border-left:1px solid $btn-border;
   cursor:pointer;
   font-size:14px;
   padding:2px 5px;
@@ -56,6 +57,7 @@ $btn-group-border-radius: $global-border-radius;
 
 .plugin-actions {
   float : right;
+  display:flex;
 
 }
 .edit-button {

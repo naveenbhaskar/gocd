@@ -248,11 +248,11 @@ const ElasticProfilesWidget = {
                 }
               }
 
-              return (<div class="panel elastic-profile-plugin-group">
+              return (<div class="panel">
 
                 <PluginGroupHeader pluginInfo={pluginInfo} pluginId={pluginId} statusReportButton={statusReportButton}/>
 
-                <div class="panel_body elastic-profile-plugin-group-content">
+                <div class="panel_body">
                   {_.map(profiles, (profile) => {
 
                     return (
