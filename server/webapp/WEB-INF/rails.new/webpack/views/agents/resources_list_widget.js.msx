@@ -96,7 +96,7 @@ const ResourcesListWidget = {
 
     return (
       <div class={`${resourcesDropdownClass} spinner-container`} onclick={vnode.state.closeDropdown}>
-        <ul class="resources-items">
+        <ul class="agents-action-dropdown resources-items">
 
           {
             _.map(vnode.attrs.resources(), (resource, index) => {
@@ -105,27 +105,24 @@ const ResourcesListWidget = {
           }
         </ul>
         <div class="add-resource">
-          <div class="row collapse">
+
             {_.isEqual('', NewResourceVM.error()) ? "" : <span class="resource-error">{NewResourceVM.error()}</span> }
-            <div class="small-9 columns">
+              <div class="add-resource_fields">
               <input type="text"
                      oninput={m.withAttr("value", vnode.state.newResourceInputValue)}
                      value={NewResourceVM.newResource()}
                      placeholder="Add resource" class="add-resource-input"/>
-            </div>
-            <div class="small-3 columns">
+
               <f.button onclick={vnode.state.addNewResource.bind(vnode.state)}
                         class="add-resource-btn">
                 Add
               </f.button>
-            </div>
-
-          </div>
-          <f.button
-            onclick={ vnode.state.updateResource.bind(vnode.state, vnode.attrs.onResourcesUpdate) }
-            class="btn-apply tiny"
-            data-toggle="resources-list">
-            Apply
+              </div>
+              <f.button
+              onclick={ vnode.state.updateResource.bind(vnode.state, vnode.attrs.onResourcesUpdate) }
+              class="btn-apply "
+              data-toggle="resources-list">
+              Apply
           </f.button>
         </div>
       </div>

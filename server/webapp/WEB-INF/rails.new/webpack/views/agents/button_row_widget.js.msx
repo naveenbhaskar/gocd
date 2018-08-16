@@ -62,36 +62,34 @@ const ButtonRowWidget = {
 
     return (
       <header class="page-header">
-        <f.row>
-          <f.column size={5}>
-            <h1>Agents</h1>
-          </f.column>
-
-          <f.column size={7}>
-            <ul class="button-group header-panel-button-group">
+        <div class="page-header_title">
+            <h1 class="page-title">Agents</h1>
+        </div>
+        <div className="page-header_actions">
+            <ul class="header-panel-button-group">
               <li>
-                <f.button onclick={args.onDelete}
+                <f.button class="agent-action-buttons" onclick={args.onDelete}
                           disabled={!args.areOperationsAllowed()}>
                   Delete
                 </f.button>
               </li>
 
               <li>
-                <f.button onclick={args.onDisable}
+                <f.button class="agent-action-buttons" onclick={args.onDisable}
                           disabled={!args.areOperationsAllowed()}>
                   Disable
                 </f.button>
               </li>
 
               <li>
-                <f.button onclick={args.onEnable}
+                <f.button class="agent-action-buttons" onclick={args.onEnable}
                           disabled={!args.areOperationsAllowed()}>
                   Enable
                 </f.button>
               </li>
 
               <li class={ ctrl.dropdownClass('resource') }>
-                <f.button onclick={ctrl.resourcesButtonClicked}
+                <f.button class="agent-action-buttons" onclick={ctrl.resourcesButtonClicked}
                           disabled={!args.areOperationsAllowed()}>
                   Resources
                 </f.button>
@@ -104,7 +102,7 @@ const ButtonRowWidget = {
               </li>
 
               <li class={ctrl.dropdownClass('environment')}>
-                <f.button onclick={ctrl.environmentsButtonClicked}
+                <f.button class="agent-action-buttons"onclick={ctrl.environmentsButtonClicked}
                           disabled={!args.areOperationsAllowed()}>
                   Environments
                 </f.button>
@@ -116,8 +114,7 @@ const ButtonRowWidget = {
                                         onEnvironmentsUpdate={args.onEnvironmentsUpdate}/>
               </li>
             </ul>
-          </f.column>
-        </f.row>
+        </div>
       </header>
     );
   }
