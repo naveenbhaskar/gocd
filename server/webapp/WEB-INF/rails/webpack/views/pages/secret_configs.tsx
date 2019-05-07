@@ -147,6 +147,6 @@ export class SecretConfigsPage extends Page<null, State> {
   protected headerPanel(vnode: m.Vnode<null, State>): any {
     return <HeaderPanel title={this.pageName()}
                         buttons={<Buttons.Primary data-test-id="add-secret-config"
-                                                  onclick={vnode.state.onAdd.bind(this)}>Add</Buttons.Primary>}/>;
+                                                  onclick={vnode.state.onAdd.bind(this)}>Add Secret Profile</Buttons.Primary>}/>;
   }
 }

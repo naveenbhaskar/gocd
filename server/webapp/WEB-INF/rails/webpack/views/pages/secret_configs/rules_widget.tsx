@@ -19,7 +19,6 @@ import * as _ from "lodash";
 import * as m from "mithril";
 import {Stream} from "mithril/stream";
 import {Rule, Rules} from "models/secret_configs/rules";
-import * as Buttons from "views/components/buttons";
 import {FlashMessage, MessageType} from "views/components/flash_message";
 import {AutoCompleteTextField, SelectField, SelectFieldOptions} from "views/components/forms/input_fields";
 import {Table} from "views/components/table";
@@ -94,7 +93,7 @@ export class RulesWidget extends MithrilViewComponent<Attrs> {
               }
               return <div data-test-id="rules-table-row" className={styles.tableRow}>
                 <div className={styles.tableCell}>
-                  d
+                  <span className={styles.iconDrag}></span>
                 </div>
                 <div className={styles.tableCell}>
                   <SelectField dataTestId="rule-directive"
@@ -125,8 +124,9 @@ export class RulesWidget extends MithrilViewComponent<Attrs> {
                     source={source}/>
                 </div>
                 <div className={styles.tableCell}>
-                  <Buttons.Cancel data-test-id="rule-delete"
-                                  onclick={this.removeRule.bind(this, vnode, rule)}>X</Buttons.Cancel>
+                  <button className={styles.iconDelete} data-test-id="rule-delete"
+                                  onclick={this.removeRule.bind(this, vnode, rule)}></button>
+
                 </div>
               </div>;
             })
