@@ -21,12 +21,13 @@ import {Stream} from "mithril/stream";
 import {Rule, Rules} from "models/secret_configs/rules";
 import * as Buttons from "views/components/buttons";
 import {FlashMessage, MessageType} from "views/components/flash_message";
-import {SelectField, SelectFieldOptions, TextField} from "views/components/forms/input_fields";
+import {AutoCompleteTextField, SelectField, SelectFieldOptions} from "views/components/forms/input_fields";
 import {Table} from "views/components/table";
 import * as styles from "views/pages/secret_configs/index.scss";
 
 interface Attrs {
   rules: Stream<Rules>;
+  autoCompleteHelper?: Map<string, string[]>;
 }
 
 export class RulesWidget extends MithrilViewComponent<Attrs> {
@@ -87,6 +88,10 @@ export class RulesWidget extends MithrilViewComponent<Attrs> {
         <div data-test-id="rules-table-body" className={styles.tableBody}>
           {
             _.map(vnode.attrs.rules(), (rule) => {
+              let source;
+              if (vnode.attrs.autoCompleteHelper && vnode.attrs.autoCompleteHelper.size > 0) {
+                source = vnode.attrs.autoCompleteHelper.get(rule().type());
+              }
               return <div data-test-id="rules-table-row" className={styles.tableRow}>
                 <div className={styles.tableCell}>
                   d
@@ -103,20 +108,21 @@ export class RulesWidget extends MithrilViewComponent<Attrs> {
                 <div className={styles.tableCell}>
                   <SelectField
                     dataTestId="rule-type"
-                    property={rule().type}
+                    property={this.proxyType.bind(this, rule)}
                     required={true}
                     errorText={rule().errors().errorsForDisplay("type")}>
                     <SelectFieldOptions selected={rule().type()}
                                         items={RulesWidget.types()}/>
                   </SelectField>
                 </div>
-                <div className={styles.tableCell}>
-                  <TextField
+                <div id="rule-resource-wrapper" className={styles.tableCell}>
+                  <AutoCompleteTextField
                     dataTestId="rule-resource"
                     placeholder="Enter the resource"
                     property={rule().resource}
                     errorText={rule().errors().errorsForDisplay("resource")}
-                    required={true}/>
+                    required={true}
+                    source={source}/>
                 </div>
                 <div className={styles.tableCell}>
                   <Buttons.Cancel data-test-id="rule-delete"
@@ -135,6 +141,15 @@ export class RulesWidget extends MithrilViewComponent<Attrs> {
     if (index !== -1) {
       vnode.attrs.rules().splice(index, 1);
     }
+  }
+
+  private proxyType(rule: Stream<Rule>, newType?: string): string {
+    if (!newType) {
+      return rule().type();
+    }
+    rule().type(newType);
+    m.redraw();
+    return newType;
   }
 }
 

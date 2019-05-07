@@ -18,6 +18,7 @@ import * as _ from "lodash";
 import * as m from "mithril";
 import {Stream} from "mithril/stream";
 import * as stream from "mithril/stream";
+import {DefaultCache, PipelineGroupsCache} from "models/pipeline_configs/pipeline_groups_cache";
 import {Rule, Rules} from "models/secret_configs/rules";
 import {SecretConfig, SecretConfigs} from "models/secret_configs/secret_configs";
 import {SecretConfigsCRUD} from "models/secret_configs/secret_configs_crud";
@@ -29,6 +30,7 @@ import {PluginInfo} from "models/shared/plugin_infos_new/plugin_info";
 import * as Buttons from "views/components/buttons";
 import {Form, FormHeader} from "views/components/forms/form";
 import {
+  Option,
   SelectField,
   SelectFieldOptions,
   Size as TextAreaSize,
@@ -46,6 +48,7 @@ export abstract class SecretConfigModal extends EntityModal<SecretConfig> {
   protected readonly originalEntityId: string;
   protected entities: Stream<SecretConfigs>;
   private disableId: boolean;
+  private pipelineGroupCache: PipelineGroupsCache<Option> = new DefaultCache();
 
   constructor(entities: Stream<SecretConfigs>,
               entity: SecretConfig,
@@ -59,12 +62,22 @@ export abstract class SecretConfigModal extends EntityModal<SecretConfig> {
     this.disableId        = disableId;
   }
 
+  render(): void {
+    super.render();
+    this.fetchAdditionalEntitiesRequired();
+  }
+
   protected modalBody(): m.Children {
     const pluginList     = _.map(this.pluginInfos, (pluginInfo: PluginInfo<any>) => {
       return {id: pluginInfo.id, text: pluginInfo.about.name};
     });
     const pluginInfo     = this.findPluginInfo(this.pluginInfos, this.entity().pluginId());
     const pluginSettings = (pluginInfo.extensionOfType(ExtensionType.SECRETS)! as SecretSettings).secretConfigSettings;
+
+    const autoCompleteHelper = new Map();
+    autoCompleteHelper.set("pipeline_group", this.pipelineGroupCache.pipelineGroups().map((current) => {
+      return current.text;
+    }));
 
     return <div>
       <FormHeader>
@@ -104,9 +117,11 @@ export abstract class SecretConfigModal extends EntityModal<SecretConfig> {
             key={this.entity().id}/>
         </div>
       </div>
-      <RulesWidget rules={this.entity().rules}/>
+      <RulesWidget rules={this.entity().rules}
+                   autoCompleteHelper={autoCompleteHelper}/>
       <div>
-        <Buttons.Secondary data-test-id="add-rule-button" onclick={this.addNewRule.bind(this)}>+ New Rule</Buttons.Secondary>
+        <Buttons.Secondary data-test-id="add-rule-button" onclick={this.addNewRule.bind(this)}>+ New
+          Rule</Buttons.Secondary>
       </div>
     </div>;
   }
@@ -133,6 +148,12 @@ export abstract class SecretConfigModal extends EntityModal<SecretConfig> {
 
   protected afterSuccess(): void {
     this.entities().push(this.entity);
+  }
+
+  private fetchAdditionalEntitiesRequired() {
+    this.pipelineGroupCache.prime(() => {
+      // nothing needs to be done
+    });
   }
 
   private findPluginInfo(pluginInfos: Array<PluginInfo<any>>, pluginId: string): PluginInfo<any> {

@@ -129,9 +129,6 @@ export class SecretConfigsPage extends Page<null, State> {
   }
 
   fetchData(vnode: m.Vnode<null, State>): Promise<any> {
-    // vnode.state.pluginInfos = stream([PluginInfo.fromJSON(SecretPluginInfoTest.file()), PluginInfo.fromJSON(
-    //   SecretPluginInfoTest.aws())]);
-
     return Promise.all([PluginInfoCRUD.all({type: ExtensionType.SECRETS}), SecretConfigsCRUD.all()])
                   .then((results) => {
                     results[0].do((successResponse) => {
